@@ -14,4 +14,5 @@ public class CharUtil {
         public static Pattern NUMBER = Pattern.compile("^1[0-9]{10}$");
         public static Pattern GRASS = Pattern.compile("[0-9|a-z|A-Z|:|_|(|)| |\\\\|/|\\||\\-|*|#]{4,20}");
     }
+
 }
