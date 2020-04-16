@@ -3,7 +3,7 @@ package tim.com.libnetwork.utils;
 import java.util.regex.Pattern;
 
 /**
- * ${description}
+ * $字符类处理类
  *
  * @author weiqiliu
  * @version 1.0 2020/2/11
