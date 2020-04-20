@@ -1,0 +1,116 @@
+package tim.com.libnetwork.base;
+
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
+
+import tim.com.libnetwork.R;
+
+/**
+ * ${description}
+ *
+ * @author weiqiliu
+ * @version 1.0 2020/4/20
+ */
+public abstract class BaseActivity extends AppCompatActivity {
+    private PopupWindow loadingPopup;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setFlag();
+        initLanguage();
+        setContentView(getActivityLayoutId());
+        initLoadingPopup();
+        obtainData();
+        initViews(savedInstanceState);
+        fillWidget();
+        getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+                loadData();
+            }
+        });
+    }
+
+    protected void setFlag() {
+
+    }
+
+    private void initLanguage() {
+        //TODO updateConfiguration 已于25hou弃用，会导致Android 7.0后语言支持的bug
+//        Locale l = null;
+//        int code = 1;
+//        if (code == 1) {
+//            l = Locale.CHINESE;
+//            //new PostFormBuilder().addHeader("Accept-Language","zh-CN,zh");
+//        } else if (code == 2) {
+//            l = Locale.ENGLISH;
+//            // new PostFormBuilder().addHeader("Accept-Language","en-us,en");
+//        }
+//        Resources resources = getResources();
+//        Configuration config = resources.getConfiguration();
+//        DisplayMetrics dm = resources.getDisplayMetrics();
+//        config.locale = l;
+//        resources.updateConfiguration(config, dm);
+    }
+
+    /**
+     * 获取布局ID
+     */
+    protected abstract int getActivityLayoutId();
+
+    /**
+     * 初始化工作
+     *
+     * @param savedInstanceState
+     */
+    protected abstract void initViews(Bundle savedInstanceState);
+
+    /**
+     * 获取本地或传递的数据
+     */
+    protected abstract void obtainData();
+
+    /**
+     * 控件填充
+     */
+    protected abstract void fillWidget();
+
+    /**
+     * 初始数据加载
+     */
+    protected abstract void loadData();
+
+    /**
+     * 初始化加载dialog
+     */
+    private void initLoadingPopup() {
+        View loadingView = getLayoutInflater().inflate(R.layout.pop_loading, null);
+        loadingPopup = new PopupWindow(loadingView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        loadingPopup.setFocusable(true);
+        loadingPopup.setClippingEnabled(false);
+        loadingPopup.setBackgroundDrawable(new ColorDrawable());
+    }
+
+    /**
+     * 显示加载框
+     */
+    public void displayLoadingPopup() {
+        loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+    }
+
+    /**
+     * 隐藏加载框
+     */
+    public void hideLoadingPopup() {
+        if (loadingPopup != null) {
+            loadingPopup.dismiss();
+        }
+
+    }
+}
