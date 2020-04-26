@@ -2,6 +2,7 @@ package tim.com.libnetwork.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Date;
 
 /**
  * ${description}
@@ -23,6 +24,11 @@ public class WonderfulStringUtils {
         String format4 = new DecimalFormat("#0.00000000").format(value);
         BigDecimal bigDecimal = new BigDecimal(format4);
         return bigDecimal.setScale(length, BigDecimal.ROUND_DOWN).stripTrailingZeros().toPlainString();
+    }
+
+    // date要转换的date类型的时间
+    public static long dateToLong(Date date) {
+        return date.getTime();
     }
 
     /**
