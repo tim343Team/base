@@ -3,7 +3,6 @@ package tim.com.libnetwork.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
@@ -46,9 +45,9 @@ public class PickTimeView {
             }
         }).setType(type)
                 .setTitleText(title)
-                .setCancelText(context.getString(R.string.cancle))//取消按钮文字
-                .setSubmitText(context.getString(R.string.confirm))//确认按钮文字
-                .setTitleColor("#ff000000")
+                .setCancelText("取消")//取消按钮文字
+                .setSubmitText("确认")//确认按钮文字
+                .setTitleColor(Color.parseColor("#ff000000"))
                 .setSubmitColor(Color.parseColor("#ff333333"))//确定按钮文字颜色
                 .setCancelColor(Color.parseColor("#ff333333"))//取消按钮文字颜色
                 .setRangDate(startDate, endDate)//起始终止年月日设定
