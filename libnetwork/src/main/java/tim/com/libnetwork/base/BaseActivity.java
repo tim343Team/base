@@ -25,6 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setFlag();
         initLanguage();
         setContentView(getActivityLayoutId());
+        init();
         initLoadingPopup();
         obtainData();
         initViews(savedInstanceState);
@@ -47,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+
     private void initLanguage() {
         //TODO updateConfiguration 已于25hou弃用，会导致Android 7.0后语言支持的bug
 //        Locale l = null;
@@ -63,6 +65,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        DisplayMetrics dm = resources.getDisplayMetrics();
 //        config.locale = l;
 //        resources.updateConfiguration(config, dm);
+    }
+
+    protected void  init() {
+
     }
 
     /**
