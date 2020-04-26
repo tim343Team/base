@@ -55,12 +55,12 @@ public class PickTimeView {
         pvTime.show();
     }
 
-    public String getTitle() {
-        return title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean[] getType() {
-        return type;
+    public void setType(boolean[] type) {
+        this.type = type;
     }
 
     public void setStartTime(int year, int month, int date, int hourOfDay, int minute,
