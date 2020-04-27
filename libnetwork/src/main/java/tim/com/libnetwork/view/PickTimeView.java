@@ -47,6 +47,7 @@ public class PickTimeView {
                 .setTitleText(title)
                 .setCancelText("取消")//取消按钮文字
                 .setSubmitText("确认")//确认按钮文字
+                .setSubCalSize(16)
                 .setTitleColor(Color.parseColor("#ff000000"))
                 .setSubmitColor(Color.parseColor("#ff333333"))//确定按钮文字颜色
                 .setCancelColor(Color.parseColor("#ff333333"))//取消按钮文字颜色
