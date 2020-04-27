@@ -40,7 +40,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        prepareView();
+        prepareView(view);
         window = getDialog().getWindow();
         initView();
         fillWidget();
@@ -73,7 +73,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     protected abstract int getLayoutId();
 
-    protected abstract void prepareView();
+    protected abstract void prepareView(View view);
 
     protected abstract void destroyView();
 
