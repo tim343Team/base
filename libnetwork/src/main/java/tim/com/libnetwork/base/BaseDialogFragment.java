@@ -27,6 +27,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setBase();
         setStyle(DialogFragment.STYLE_NORMAL, theme);
     }
 
@@ -69,6 +70,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public void setGravity(int gravity) {
         this.gravity = gravity;
+    }
+
+    private void setBase(){
+
     }
 
     protected abstract int getLayoutId();
