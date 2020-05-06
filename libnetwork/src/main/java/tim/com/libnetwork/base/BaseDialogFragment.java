@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import tim.com.libnetwork.R;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
- * ${description}
+ * $ 弹窗基类 可自定义弹窗类型和弹窗显示位置
  *
  * @author weiqiliu
  * @version 1.0 2020/4/27
@@ -22,6 +23,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected int theme;
     protected int gravity = Gravity.BOTTOM;
     protected Window window;
+    protected Unbinder unbinder;
     protected View rootView;
 
     @Override
@@ -41,6 +43,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        unbinder = ButterKnife.bind(this, view);
         prepareView(view);
         window = getDialog().getWindow();
         initView();
@@ -61,6 +64,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unbinder.unbind();
         destroyView();
     }
 

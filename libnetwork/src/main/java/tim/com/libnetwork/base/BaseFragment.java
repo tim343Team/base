@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * ${description}
  *
@@ -15,6 +18,7 @@ import android.view.ViewGroup;
  */
 public abstract class BaseFragment extends Fragment {
     protected View rootView;
+    Unbinder unbinder;
     protected boolean isInit = false;
     protected boolean isNeedLoad = true;
     protected boolean isSetTitle = false;
@@ -28,7 +32,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
 //                if (isImmersionBarEnabled()) {
 //            initImmersionBar();
 //        }
@@ -64,7 +68,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
 //        if (immersionBar != null) immersionBar.destroy();
-//        unbinder.unbind();
+        unbinder.unbind();
         initDestroy();
         super.onDestroyView();
     }

@@ -8,16 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import tim.com.libnetwork.R;
 
 /**
- * ${description}
+ * $  Activity基类
  *
  * @author weiqiliu
  * @version 1.0 2020/4/20
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private PopupWindow loadingPopup;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setFlag();
         initLanguage();
         setContentView(getActivityLayoutId());
+        unbinder = ButterKnife.bind(this);
         init();
         initLoadingPopup();
         obtainData();
@@ -41,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbinder.unbind();
         hideLoadingPopup();
     }
 
