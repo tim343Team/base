@@ -76,16 +76,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     }
 
-    private void prepareView(View view) {
-
-    }
-
-    private void destroyView() {
-
-    }
-
     protected abstract int getLayoutId();
 
+    protected abstract void prepareView(View view);
+
+    protected abstract void destroyView();
 
     protected abstract void initView();
 
