@@ -49,4 +49,6 @@ dependencies {
     api 'com.contrarywind:Android-PickerView:4.1.4'
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    api 'org.greenrobot:eventbus:3.1.1'
+
 }
