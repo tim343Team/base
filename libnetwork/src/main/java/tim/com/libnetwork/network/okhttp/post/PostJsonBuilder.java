@@ -1,6 +1,9 @@
 package tim.com.libnetwork.network.okhttp.post;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.MediaType;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
@@ -13,6 +16,7 @@ import tim.com.libnetwork.network.okhttp.RequestCall;
  * @version 1.0 2020/4/13
  */
 public class PostJsonBuilder extends RequestBuilder {
+    private List<PostFormBuilder.FileInput> files = new ArrayList<>();
     private String body;
     private MediaType mime;
 
@@ -42,6 +46,11 @@ public class PostJsonBuilder extends RequestBuilder {
         params.put(key, val);
         return this;
     }
+
+//    public PostFormBuilder addFile(String name, String filename, File file) {
+//        files.add(new PostFormBuilder.FileInput(name, filename, file));
+//        return this;
+//    }
 
     @Override
     public PostJsonBuilder addHeader(String key, String val) {

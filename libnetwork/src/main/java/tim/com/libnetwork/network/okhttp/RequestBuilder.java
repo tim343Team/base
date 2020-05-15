@@ -1,5 +1,6 @@
 package tim.com.libnetwork.network.okhttp;
 
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -20,4 +21,6 @@ public abstract class RequestBuilder {
     public abstract RequestBuilder addParams(String key, String val);
 
     public abstract RequestBuilder addHeader(String key, String val);
+
+//    public abstract RequestBuilder addFile(String name, String filename, File file);
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.MediaType;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
 import tim.com.libnetwork.network.okhttp.RequestCall;
 
@@ -16,6 +17,8 @@ import tim.com.libnetwork.network.okhttp.RequestCall;
  */
 public class PostFormBuilder extends RequestBuilder {
     private List<FileInput> files = new ArrayList<>();
+    private String body;
+    private MediaType mime;
 
     @Override
     public PostFormBuilder url(String url) {
@@ -46,7 +49,9 @@ public class PostFormBuilder extends RequestBuilder {
 
     @Override
     public RequestBuilder addHeader(String key, String val) {
-        return null;
+        if (this.headers == null) headers = new HashMap<>();
+        headers.put(key, val);
+        return this;
     }
 
     public static class FileInput {
