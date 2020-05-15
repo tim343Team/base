@@ -27,7 +27,9 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public RequestCall build() {
         addHeader("Accept-Language", "zh-CN,zh");
-        return new PostFormRequest(url, params, headers, files).build();
+        PostFormRequest postFormRequest=new PostFormRequest(url, params, headers, files);
+        RequestCall call=postFormRequest.build();
+        return call;
     }
 
     @Override
