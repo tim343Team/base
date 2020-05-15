@@ -74,6 +74,6 @@ public class PostFormRequest extends OkHttpRequest {
 
     @Override
     protected Request buildRequest(Request.Builder builder, RequestBody requestBody) {
-        return null;
+        return builder.post(requestBody).build();
     }
 }
