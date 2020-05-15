@@ -2,6 +2,7 @@ package tim.com.libnetwork.network.okhttp;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,7 +83,10 @@ public class WonderfulOkhttpUtils {
     private String name;
 
     public void execute(RequestCall requestCall, Callback callback) {
-        if (callback == null) callback = Callback.CALLBACK_DEFAULT;
+        if (callback == null) {
+            Log.e("callback is null","!!!!");
+            callback = Callback.CALLBACK_DEFAULT;
+        }
         WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());
 //        WonderfulLogUtils.logi("请求头", requestCall.getCall().request().headers().toString());
         name = requestCall.getCall().request().url().toString();
