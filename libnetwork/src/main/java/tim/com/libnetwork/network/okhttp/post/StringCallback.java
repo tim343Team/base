@@ -61,7 +61,7 @@ public abstract class StringCallback extends Callback<String>{
 //            dialog.show();
 //            dialog.setCanceledOnTouchOutside(false);
 //            dialog.setCancelable(false);
-        }
+//        }
     }
 
     private boolean checkInternet() {
