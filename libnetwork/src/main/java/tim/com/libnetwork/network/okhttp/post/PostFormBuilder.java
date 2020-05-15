@@ -2,6 +2,7 @@ package tim.com.libnetwork.network.okhttp.post;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
@@ -30,8 +31,15 @@ public class PostFormBuilder extends RequestBuilder {
     }
 
     @Override
-    public RequestBuilder addParams(String key, String val) {
-        return null;
+    public RequestBuilder addParams(String key, String value) {
+        if (this.params == null) params = new HashMap<>();
+        params.put(key, value);
+        return this;
+    }
+
+    public PostFormBuilder addFile(String name, String filename, File file) {
+        files.add(new FileInput(name, filename, file));
+        return this;
     }
 
     @Override
