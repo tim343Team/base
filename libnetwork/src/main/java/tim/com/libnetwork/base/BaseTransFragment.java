@@ -2,6 +2,7 @@ package tim.com.libnetwork.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 public abstract class BaseTransFragment extends BaseFragment {
     private boolean isFirst = true;
 
-    protected List<BaseFragment> fragments = new ArrayList<>();
+    protected List<Fragment> fragments = new ArrayList<>();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
