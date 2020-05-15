@@ -58,9 +58,9 @@ public class PostFormRequest extends OkHttpRequest {
     private void addParams(MultipartBody.Builder builder) {
         if (params != null && !params.isEmpty()) {
             for (String key : params.keySet()) {
-                builder.addPart(Headers.of("Currency-Disposition", "form-data; name=\"" + key + "\""),
-                        RequestBody.create(null, params.get(key)));
-
+//                builder.addPart(Headers.of("Currency-Disposition", "form-data; name=\"" + key + "\""),
+//                        RequestBody.create(null, params.get(key)));
+                builder.addFormDataPart(key, params.get(key));
             }
         }
     }
