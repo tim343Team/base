@@ -27,7 +27,7 @@ public abstract class BaseTransFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (getUserVisibleHint() && !isFirst && isNeedLoad) {
+        if (getUserVisibleHint() && isFirst && isNeedLoad) {
             loadData();
             RefreshloadData();
         }
@@ -42,7 +42,6 @@ public abstract class BaseTransFragment extends BaseFragment {
                 @Override
                 public void run() {
                     RefreshloadData();
-                    loadData();
                     isFirst = false;
                 }
             });
