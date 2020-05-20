@@ -82,6 +82,15 @@ public class PickTimeView {
         startDate.setTimeInMillis(System.currentTimeMillis());
     }
 
+    public void setEndtTimeMillis(long millis){
+        endDate.setTimeInMillis(millis);
+    }
+
+    public void setStartTimeMillis(long millis){
+        startDate.setTimeInMillis(millis);
+    }
+
+
     OnTimeSelect timeSelect;
 
     public void setOnTimeSelectListener(OnTimeSelect timeSelect) {
