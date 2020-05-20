@@ -16,7 +16,6 @@ import java.util.List;
  */
 public abstract class BaseTransFragment extends BaseFragment {
     private boolean isFirst = true;
-    private boolean loadOnlyone=false;
 
     protected List<Fragment> fragments = new ArrayList<>();
 
@@ -28,17 +27,21 @@ public abstract class BaseTransFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (getUserVisibleHint() && !isFirst && isNeedLoad) loadData();
+        if (getUserVisibleHint() && !isFirst && isNeedLoad) {
+            loadData();
+            RefreshloadData();
+        }
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
-        if (!hidden && !loadOnlyone) {
+        if (!hidden) {
 //            if (immersionBar != null) initImmersionBar();
-            if (!isNeedLoad||rootView==null) return;
+            if (!isNeedLoad || rootView == null) return;
             rootView.post(new Runnable() {
                 @Override
                 public void run() {
+                    RefreshloadData();
                     loadData();
                     isFirst = false;
                 }
@@ -48,7 +51,4 @@ public abstract class BaseTransFragment extends BaseFragment {
 
     protected abstract String getmTag();
 
-    public void setLoadOnlyone(boolean loadOnlyone) {
-        this.loadOnlyone = loadOnlyone;
-    }
 }

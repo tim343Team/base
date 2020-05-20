@@ -93,6 +93,8 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void loadData();
 
+    protected abstract void RefreshloadData();
+
     protected abstract void initDestroy();
 
 }
