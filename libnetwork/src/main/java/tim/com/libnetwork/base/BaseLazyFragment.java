@@ -15,6 +15,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
      * 是否正在加载数据
      */
     protected boolean isLoad = false;
+    private boolean isFirst = true;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -28,6 +29,14 @@ public abstract class BaseLazyFragment extends BaseFragment {
         tryToLoadData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUserVisibleHint() && !isFirst && isNeedLoad) {
+            RefreshloadData();
+        }
+    }
+
     private void tryToLoadData() {
         if (!isInit) return;
         if (!isNeedLoad) return;
@@ -36,6 +45,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
                 @Override
                 public void run() {
                     loadData();
+                    isFirst = false;
                 }
             });
             isLoad = true;
