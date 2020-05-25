@@ -30,8 +30,8 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public RequestCall build() {
         addHeader("Accept-Language", "zh-CN,zh");
-        PostFormRequest postFormRequest=new PostFormRequest(url, params, headers, files);
-        RequestCall call=postFormRequest.build();
+        PostFormRequest postFormRequest = new PostFormRequest(url, params, headers, files);
+        RequestCall call = postFormRequest.build();
         return call;
     }
 
@@ -47,9 +47,9 @@ public class PostFormBuilder extends RequestBuilder {
         return this;
     }
 
-    public PostFormBuilder addFile(String name,File[] MultipartFile) {
-        for(int i=0;i<MultipartFile.length;i++){
-            files.add(new FileInput(name, MultipartFile[i].getName(), MultipartFile[i]));
+    public PostFormBuilder addFile(String name, List<File> MultipartFile) {
+        for (File file : MultipartFile) {
+            files.add(new FileInput(name, file.getName(), file));
         }
         return this;
     }
