@@ -47,6 +47,13 @@ public class PostFormBuilder extends RequestBuilder {
         return this;
     }
 
+    public PostFormBuilder addFile(String name,File[] MultipartFile) {
+        for(int i=0;i<MultipartFile.length;i++){
+            files.add(new FileInput(name, MultipartFile[i].getName(), MultipartFile[i]));
+        }
+        return this;
+    }
+
     @Override
     public RequestBuilder addHeader(String key, String val) {
         if (this.headers == null) headers = new HashMap<>();
