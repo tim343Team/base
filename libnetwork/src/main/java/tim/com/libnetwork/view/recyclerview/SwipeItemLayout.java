@@ -15,10 +15,10 @@
 //import android.widget.Scroller;
 //
 ///**
-// * $仿ios recyclerview左滑删除样式
+// * $仿ios列表左滑删除/编辑， 该功能需要导入Recyclerview ，但目前改项目未依赖RecyclerView包，需要请自行复制到项目中使用
 // *
 // * @author weiqiliu
-// * @version 1.0 2020/5/23
+// * @version 1.0 2020/6/8
 // */
 //public class SwipeItemLayout extends ViewGroup{
 //    enum Mode{

@@ -7,7 +7,7 @@ import android.util.TypedValue;
 import android.widget.RelativeLayout;
 
 /**
- * ${description}
+ * 图片剪裁控件，用于头像/背景图剪裁
  *
  * @author weiqiliu
  * @version 1.0 2020/5/13

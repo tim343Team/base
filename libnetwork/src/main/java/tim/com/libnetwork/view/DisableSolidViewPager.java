@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * ${description}
+ * 是否滑动的viewpager
  *
  * @author weiqiliu
  * @version 1.0 2020/5/11

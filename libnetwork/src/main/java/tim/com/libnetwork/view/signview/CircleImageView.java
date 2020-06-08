@@ -1,6 +1,7 @@
-package tim.com.libnetwork.view;
+package tim.com.libnetwork.view.signview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -12,24 +13,25 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.widget.ImageView;
+
+import tim.com.libnetwork.R;
 
 /**
- * 圆形imageview
+ * ${description}
  *
  * @author weiqiliu
- * @version 1.0 2020/5/11
+ * @version 1.0 2020/6/8
  */
-public class CircleImageView extends AppCompatImageView {
-
+public class CircleImageView extends ImageView {
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLORDRAWABLE_DIMENSION = 1;
 
     private static final int DEFAULT_BORDER_WIDTH = 2;
-    private static final int DEFAULT_BORDER_COLOR = Color.parseColor("#FFFFFF");
+    private static final int DEFAULT_BORDER_COLOR = Color.WHITE;
 
     private final RectF mDrawableRect = new RectF();
     private final RectF mBorderRect = new RectF();
@@ -53,7 +55,7 @@ public class CircleImageView extends AppCompatImageView {
     private boolean mSetupPending;
 
     public CircleImageView(Context context) {
-        super(context);
+        this(context, null, 0);
     }
 
     public CircleImageView(Context context, AttributeSet attrs) {
@@ -63,6 +65,13 @@ public class CircleImageView extends AppCompatImageView {
     public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         super.setScaleType(SCALE_TYPE);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
+
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH);
+        mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR);
+
+        a.recycle();
 
         mReady = true;
 
@@ -80,8 +89,7 @@ public class CircleImageView extends AppCompatImageView {
     @Override
     public void setScaleType(ScaleType scaleType) {
         if (scaleType != SCALE_TYPE) {
-            throw new IllegalArgumentException(String.format(
-                    "ScaleType %s not supported.", scaleType));
+            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
         }
     }
 
@@ -91,10 +99,8 @@ public class CircleImageView extends AppCompatImageView {
             return;
         }
 
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius,
-                mBitmapPaint);
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius,
-                mBorderPaint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
     }
 
     @Override
@@ -164,11 +170,9 @@ public class CircleImageView extends AppCompatImageView {
             Bitmap bitmap;
 
             if (drawable instanceof ColorDrawable) {
-                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION,
-                        COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
+                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
             } else {
-                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-                        drawable.getIntrinsicHeight(), BITMAP_CONFIG);
+                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
             }
 
             Canvas canvas = new Canvas(bitmap);
@@ -190,9 +194,7 @@ public class CircleImageView extends AppCompatImageView {
             return;
         }
 
-        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP,
-                Shader.TileMode.CLAMP);
-
+        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         mBitmapPaint.setAntiAlias(true);
         mBitmapPaint.setShader(mBitmapShader);
 
@@ -205,13 +207,10 @@ public class CircleImageView extends AppCompatImageView {
         mBitmapWidth = mBitmap.getWidth();
 
         mBorderRect.set(0, 0, getWidth(), getHeight());
-        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2,
-                (mBorderRect.width() - mBorderWidth) / 2);
+        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2, (mBorderRect.width() - mBorderWidth) / 2);
 
-        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width()
-                - mBorderWidth, mBorderRect.height() - mBorderWidth);
-        mDrawableRadius = Math.min(mDrawableRect.height() / 2,
-                mDrawableRect.width() / 2);
+        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width() - mBorderWidth, mBorderRect.height() - mBorderWidth);
+        mDrawableRadius = Math.min(mDrawableRect.height() / 2, mDrawableRect.width() / 2);
 
         updateShaderMatrix();
         invalidate();
@@ -224,8 +223,7 @@ public class CircleImageView extends AppCompatImageView {
 
         mShaderMatrix.set(null);
 
-        if (mBitmapWidth * mDrawableRect.height() > mDrawableRect.width()
-                * mBitmapHeight) {
+        if (mBitmapWidth * mDrawableRect.height() > mDrawableRect.width() * mBitmapHeight) {
             scale = mDrawableRect.height() / (float) mBitmapHeight;
             dx = (mDrawableRect.width() - mBitmapWidth * scale) * 0.5f;
         } else {
@@ -234,10 +232,8 @@ public class CircleImageView extends AppCompatImageView {
         }
 
         mShaderMatrix.setScale(scale, scale);
-        mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth,
-                (int) (dy + 0.5f) + mBorderWidth);
+        mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth);
 
         mBitmapShader.setLocalMatrix(mShaderMatrix);
     }
-
 }
