@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 public abstract class BaseDialogFragment extends DialogFragment {
     protected int theme;
     protected int gravity = Gravity.BOTTOM;
+    protected int width = 0;
     protected Window window;
     protected Unbinder unbinder;
     protected View rootView;
@@ -54,7 +55,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     @Override
     public void onResume() {
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = width == 0 ? WindowManager.LayoutParams.MATCH_PARENT : width;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
         getDialog().getWindow().setGravity(gravity);
@@ -76,7 +77,15 @@ public abstract class BaseDialogFragment extends DialogFragment {
         this.gravity = gravity;
     }
 
-    private void setBase(){
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    private void setBase() {
 
     }
 
