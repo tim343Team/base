@@ -19,7 +19,6 @@ import java.util.List;
 public class AnimationUtil {
     private View view;
     private long delay = 0;
-    private long delay1 = 0;
     private List<AnimationAction> animationActionList = new ArrayList<>();
     private long duration;
     private Interpolator interpolator;
