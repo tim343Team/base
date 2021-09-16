@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ${description}
+ * FrameLayout中的fragment使用，监听fragment的状态，是第一次加载还是刷新
  *
  * @author weiqiliu
  * @version 1.0 2020/5/6

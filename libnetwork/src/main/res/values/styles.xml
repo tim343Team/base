@@ -1,3 +1,8 @@
 <resources>
 
+    <!--弹窗模式样式-->
+    <style name="Dialog.FullScreen" parent="Theme.AppCompat.Dialog">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

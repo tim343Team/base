@@ -13,6 +13,12 @@ import java.util.List;
 /**
  * $属性动画工具类，以建造者模式封装，提供缩放，移动，旋转，渐变动画。动画执行时间，插值器，动画状态监听
  *
+ * eg:AnimationUtil anim = new AnimationUtil();
+ *                     anim.setView(tvAvtivty).setType(AnimationUtil.AnimationType.SCALEX, 0f)
+ *                             .setType(AnimationUtil.AnimationType.SCALEY, 0f)
+ *                             .setDuration(200)
+ *                             .....
+ *                             .build();
  * @author weiqiliu
  * @version 1.0 2020/2/17
  */

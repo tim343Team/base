@@ -23,7 +23,19 @@ import tim.com.libnetwork.utils.WonderfulLogUtils;
 import tim.com.libnetwork.utils.WonderfulStringUtils;
 
 /**
- * ${description}
+ * 网络请求封装
+ *
+ * eg:WonderfulOkhttpUtils.post().url("url").addHeader("x-auth-token", token)
+ *                 .addParams("symbol", symbol).build().execute(new StringCallback(){
+ *             @Override
+ *             public void onError(Request request, Exception e) {
+ *                 super.onError(request, e);
+ *             }
+ *
+ *             @Override
+ *             public void onResponse(String response) {
+ *             }
+ *         })
  *
  * @author weiqiliu
  * @version 1.0 2020/4/13

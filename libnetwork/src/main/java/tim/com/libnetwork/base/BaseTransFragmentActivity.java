@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ${description}
+ * $在Activity中使用FrameLayout容器控制，显示，删除多个Fragment
  *
  * @author weiqiliu
  * @version 1.0 2020/5/6
@@ -57,9 +57,21 @@ public abstract class BaseTransFragmentActivity extends BaseActivity{
         transaction.commit();
     }
 
+    /**
+     * 在此方法中恢复Fragment
+     * xxxFragment=getSupportFragmentManager().findFragmentByTag(XXFragment.TAG);
+     * fragments.add(xxxFragment);
+     */
     protected abstract void recoverFragment();
 
+    /**
+     * 在此方法中初始化Fragment
+     * fragments.add(new xxxFragment());
+     */
     protected abstract void initFragments();
 
+    /**
+     * 必须实现的方法 ，设置FrameLayout Id
+     */
     public abstract int getContainerId();
 }

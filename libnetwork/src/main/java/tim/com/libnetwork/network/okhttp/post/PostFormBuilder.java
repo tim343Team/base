@@ -29,6 +29,7 @@ public class PostFormBuilder extends RequestBuilder {
 
     @Override
     public RequestCall build() {
+        //如需要可以在这里添加默认的请求头
         addHeader("Accept-Language", "zh-CN,zh");
         PostFormRequest postFormRequest = new PostFormRequest(url, params, headers, files);
         RequestCall call = postFormRequest.build();

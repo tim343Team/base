@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * ${description}
+ * 时间格式转化工具类
  *
  * @author weiqiliu
  * @version 1.0 2020/5/21

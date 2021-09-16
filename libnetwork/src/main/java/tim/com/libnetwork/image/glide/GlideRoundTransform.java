@@ -15,9 +15,17 @@ import com.bumptech.glide.load.resource.bitmap.TransformationUtils;
 import java.security.MessageDigest;
 
 /**
- * ${description}
+ * 可设置圆角的Glide transform
  *
- * @author weiqiliu
+ * eg:
+ *      RequestOptions options = new RequestOptions()
+ *      .override((height - 1 - WonderfulDpPxUtils.dip2px(context, 6)),height-1)
+ *      .centerCrop()
+ *      .placeholder(R.mipmap.ic_logo) //预加载图片
+ *      .error(R.mipmap.ic_logo) //加载失败图片
+ *      .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+ *      .transform(new GlideRoundTransform(10)); //圆角
+ *      Glide.with(context).load(imgs.get(position)).apply(options).into(holder.image);
  * @version 1.0 2020/5/8
  */
 public class GlideRoundTransform extends BitmapTransformation {

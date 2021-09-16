@@ -16,6 +16,21 @@ import tim.com.libnetwork.R;
 /**
  * $底部弹出仿ios时间选择器
  *
+ * eg:     PickTimeView timeView = new PickTimeView(RegisterCompleteActivity.this);
+ *         timeView.setStartTime(1970, 1, 1, 0, 0, 0);
+ *         timeView.setEndtTimeMillis();
+ *         timeView.setTitle("生日");
+ *         timeView.showTimePickerView();
+ *         timeView.setOnTimeSelectListener(new PickTimeView.OnTimeSelect() {
+ *             @Override
+ *             public void onSelect(Date date) {
+ *                 DateFormat df = new SimpleDateFormat("yyyy年MM月dd日");
+ *                 DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+ *                 tvBirthday.setText(df.format(date));
+ *                 bean.setBirthday(df2.format(date));
+ *             }
+ *         });
+ *
  * @author weiqiliu
  * @version 1.0 2020/4/26
  */
@@ -35,13 +50,6 @@ public class PickTimeView {
             @Override
             public void onTimeSelect(Date date, View v) {
                 timeSelect.onSelect(date);
-//                DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:00");
-//                tvTime.setText(df.format(date));
-//                if (isStart) {
-//                    startTime = WonderfulStringUtils.dateToLong(date) + "";
-//                } else {
-//                    endTime = WonderfulStringUtils.dateToLong(date) + "";
-//                }
             }
         }).setType(type)
                 .setTitleText(title)

@@ -12,6 +12,7 @@ import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import tim.com.libnetwork.R;
 
 /**
  * $ 弹窗基类 可自定义弹窗类型和弹窗显示位置
@@ -20,7 +21,7 @@ import butterknife.Unbinder;
  * @version 1.0 2020/4/27
  */
 public abstract class BaseDialogFragment extends DialogFragment {
-    protected int theme;
+    protected int theme= R.style.Dialog_FullScreen;
     protected int gravity = Gravity.BOTTOM;
     protected int width = 0;
     protected Window window;
@@ -69,10 +70,16 @@ public abstract class BaseDialogFragment extends DialogFragment {
         destroyView();
     }
 
+    /**
+     * 设置弹窗样式，通过样式文件定义DialogFragment 的样式
+     */
     public void setTheme(int theme) {
         this.theme = theme;
     }
 
+    /**
+     * 设置弹窗显示位置
+     */
     public void setGravity(int gravity) {
         this.gravity = gravity;
     }
@@ -89,6 +96,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     }
 
+    /**
+     * 设置弹窗页面，子类必须要实现
+     */
     protected abstract int getLayoutId();
 
     protected abstract void prepareView(View view);

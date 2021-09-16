@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import tim.com.libnetwork.R;
 
 /**
- * ${description}
+ * 圆形显示imageView
  *
  * @author weiqiliu
  * @version 1.0 2020/6/8

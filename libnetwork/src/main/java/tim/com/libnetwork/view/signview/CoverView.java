@@ -14,7 +14,7 @@ import java.util.List;
 import tim.com.libnetwork.R;
 
 /**
- * ${description}
+ * 横排头像展示控件
  *
  * @author weiqiliu
  * @version 1.0 2020/6/8
@@ -27,6 +27,9 @@ public class CoverView<T> extends ViewGroup {
 
     //图片的直径
     private int itemDia;
+
+    //显示方向：1.left_to_right  2.right_to_left
+    private int displayStyle;
 
     //覆盖的宽度
     private int coverWidth = 0;
@@ -47,8 +50,6 @@ public class CoverView<T> extends ViewGroup {
     private CoverAdapter<T> adapter;
 
     private List<ImageView> imageViewList = new ArrayList<>();
-
-    private int displayStyle;
 
     public CoverView(Context context) {
         this(context, null, 0);
