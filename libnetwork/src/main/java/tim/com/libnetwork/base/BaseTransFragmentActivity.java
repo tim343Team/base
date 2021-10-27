@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * $在Activity中使用FrameLayout容器控制，显示，删除多个Fragment
+ * $在Activity中使用FrameLayout容器控制，显示，删除多个Fragment.通常适用于采用fragmentlyout+fragment切换模式的架构
  *
  * @author weiqiliu
  * @version 1.0 2020/5/6
