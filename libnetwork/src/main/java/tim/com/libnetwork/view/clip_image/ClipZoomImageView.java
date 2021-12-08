@@ -14,13 +14,15 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 /**
  * ${description}
  *
  * @author weiqiliu
  * @version 1.0 2020/5/13
  */
-public class ClipZoomImageView extends android.support.v7.widget.AppCompatImageView implements
+public class ClipZoomImageView extends AppCompatImageView implements
         ScaleGestureDetector.OnScaleGestureListener, View.OnTouchListener,
         ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = ClipZoomImageView.class.getSimpleName();
