@@ -44,4 +44,17 @@ public class AuthorityUtils {
             }
         }
     }
+
+    //相机使用权限
+    public static void getCAMERAAuthor(Context context, Activity acitivty){
+        //判断是否6.0以上的手机   不是就不用
+        if (Build.VERSION.SDK_INT >= 23) {
+            //判断是否有这个权限
+            if (ContextCompat.checkSelfPermission(context,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                //2、申请权限: 参数二：权限的数组；参数三：请求码
+                ActivityCompat.requestPermissions(acitivty, new String[]{Manifest.permission.CAMERA},
+                        2);
+            }
+        }
+    }
 }
