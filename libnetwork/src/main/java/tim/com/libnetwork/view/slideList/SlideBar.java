@@ -70,7 +70,8 @@ public class SlideBar extends androidx.appcompat.widget.AppCompatButton {
         for (int i = 0; i < nAssortCount; i++){  
         	mPaint.setAntiAlias(true);  // �����   
         	mPaint.setTypeface(Typeface.DEFAULT_BOLD);  // Ĭ�ϴ��� 
-        	mPaint.setColor(Color.parseColor("#5f5f5f"));  // ��ɫ  
+        	mPaint.setColor(Color.parseColor("#5f5f5f"));  // ��ɫ
+            mPaint.setTextSize(ResolutionUtil.dip2px(getContext(),12));
             if (i == mSelectIndex){  
                 // ��ѡ�����ĸ�ı���ɫ�ʹ���  
             	mPaint.setColor(Color.parseColor("#3399ff"));  
