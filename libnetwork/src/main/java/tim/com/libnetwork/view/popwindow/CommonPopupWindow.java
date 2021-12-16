@@ -71,4 +71,8 @@ public abstract class CommonPopupWindow {
     public void showAtLocation(View parent, int gravity, int x, int y) {
         mInstance.showAtLocation(parent, gravity, x, y);
     }
+
+    public void dismiss(){
+        mInstance.dismiss();
+    }
 }
