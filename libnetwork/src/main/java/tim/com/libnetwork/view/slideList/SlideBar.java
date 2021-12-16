@@ -15,6 +15,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import tim.com.libnetwork.R;
+import tim.com.libnetwork.utils.ResolutionUtil;
 
 
 public class SlideBar extends androidx.appcompat.widget.AppCompatButton {
@@ -74,7 +75,7 @@ public class SlideBar extends androidx.appcompat.widget.AppCompatButton {
                 // ��ѡ�����ĸ�ı���ɫ�ʹ���  
             	mPaint.setColor(Color.parseColor("#3399ff"));  
             	mPaint.setFakeBoldText(true);  
-            	mPaint.setTextSize(30);  
+            	mPaint.setTextSize(ResolutionUtil.dip2px(getContext(),12));
             }  
             float xPos = hWidth / 2 - mPaint.measureText(ASSORT_TEXT[i]) / 2;  // ������ĸ��X����  
             float yPos = nInterval * i + nInterval;  // ������ĸ��Y����  
@@ -136,7 +137,7 @@ public class SlideBar extends androidx.appcompat.widget.AppCompatButton {
 		if (mPopupWindow != null){
             text.setText(string);
         } else{   
-            mPopupWindow = new PopupWindow(layoutView, 100, 100, false);
+            mPopupWindow = new PopupWindow(layoutView, 150, 150, false);
             mPopupWindow.showAtLocation(mAttachActivity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
         }
         text.setText(string);
