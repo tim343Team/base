@@ -115,6 +115,7 @@ public class WonderfulFileUtils {
     }
 
     public static Uri getUriForFile24(Context context, File file) {
-        return FileProvider.getUriForFile(context, context.getPackageName()+".fileprovider", file);
+//        return FileProvider.getUriForFile(context, context.getPackageName()+".fileprovider", file);
+        return FileProvider.getUriForFile(context, context.getPackageName()+".provider", file);
     }
 }
