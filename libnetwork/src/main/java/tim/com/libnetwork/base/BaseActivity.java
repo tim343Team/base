@@ -119,7 +119,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 显示加载框
      */
     public void displayLoadingPopup() {
-        loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        try {
+            loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        }catch (Exception e){
+
+        }
     }
 
     /**
