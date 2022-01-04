@@ -3,6 +3,7 @@ package tim.com.libnetwork.network.okhttp.get;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -59,5 +60,10 @@ public class GetBuilder extends RequestBuilder {
         if (this.headers == null) headers = new HashMap<>();
         headers.put(key, value);
         return this;
+    }
+
+    @Override
+    public RequestBuilder addFile(String name, String filename, File file) {
+        return null;
     }
 }

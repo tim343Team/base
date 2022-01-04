@@ -58,4 +58,9 @@ public class PostJsonBuilder extends RequestBuilder {
         headers.put(key, val);
         return this;
     }
+
+    @Override
+    public RequestBuilder addFile(String name, String filename, File file) {
+        return null;
+    }
 }

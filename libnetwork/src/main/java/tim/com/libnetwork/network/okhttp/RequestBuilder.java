@@ -22,5 +22,5 @@ public abstract class RequestBuilder {
 
     public abstract RequestBuilder addHeader(String key, String val);
 
-//    public abstract RequestBuilder addFile(String name, String filename, File file);
+    public abstract RequestBuilder addFile(String name, String filename, File file);
 }
