@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import tim.com.libnetwork.R;
+import tim.com.libnetwork.utils.sysinfo.QMUIStatusBarHelper;
 
 /**
  * $  Activity基类
@@ -26,6 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        QMUIStatusBarHelper.setStatusBarLightMode(this);
         setFlag();
         initLanguage();
         setContentView(getActivityLayoutId());
