@@ -26,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        befSuperonCreate();
         super.onCreate(savedInstanceState);
         QMUIStatusBarHelper.setStatusBarLightMode(this);
         setFlag();
@@ -50,6 +51,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         unbinder.unbind();
         hideLoadingPopup();
+    }
+
+    protected void befSuperonCreate() {
+
     }
 
     protected void setFlag() {
