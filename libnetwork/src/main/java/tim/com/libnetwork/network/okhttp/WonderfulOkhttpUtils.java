@@ -100,7 +100,7 @@ public class WonderfulOkhttpUtils {
             callback = Callback.CALLBACK_DEFAULT;
         }
         WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());
-//        WonderfulLogUtils.logi("请求头", requestCall.getCall().request().headers().toString());
+        WonderfulLogUtils.logi("请求头", requestCall.getCall().request().headers().toString());
         name = requestCall.getCall().request().url().toString();
         final Callback finalCallback = callback;
         requestCall.getCall().enqueue(new okhttp3.Callback() {
@@ -123,12 +123,12 @@ public class WonderfulOkhttpUtils {
                     return;
                 }
                 try {
-                    token = response.header(tokenName);
-                    if (!WonderfulStringUtils.isEmpty(token)) {
-                        //TODO 保存token
+//                    token = response.header(tokenName);
+//                    if (!WonderfulStringUtils.isEmpty(token)) {
+//                        //TODO 保存token
 //                        MyApplication.getApp().getCurrentUser().setToken(token);
 //                        MyApplication.getApp().saveCurrentUser();
-                    }
+//                    }
                     Object o = finalCallback.parseNetworkResponse(response);
                     sendSuccessResultCallback(o, finalCallback);
                 } catch (IOException e) {
