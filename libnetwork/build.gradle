@@ -47,7 +47,8 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    api 'com.squareup.okhttp3:okhttp:4.9.0'
+    api 'com.squareup.okhttp3:okhttp:4.1.0'
+//    api 'com.squareup.okhttp3:okhttp:4.9.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'//BaseQuickAdapter
     implementation 'com.github.bumptech.glide:glide:4.6.1'

@@ -37,6 +37,10 @@ public class RequestCall {
     }
 
     public Call getCall() {
-        return call;
+        if(call == null){
+            return WonderfulOkhttpUtils.getInstance().getOkHttpClient().newCall(request);
+        } else {
+            return call;
+        }
     }
 }
