@@ -11,7 +11,8 @@ import java.util.Date;
  * @version 1.0 2020/5/21
  */
 public class DateTimeUtil {
-    private DateTimeUtil(){}
+    private DateTimeUtil() {
+    }
 
     public static int getAge(int year, int month, int day) {
         Calendar cal = Calendar.getInstance();
@@ -29,7 +30,7 @@ public class DateTimeUtil {
                 age--;
             }
         }
-        if(age < 1) age = 1;
+        if (age < 1) age = 1;
         return age;
     }
 
@@ -64,7 +65,7 @@ public class DateTimeUtil {
                     age--;
                 }
             }
-            if(age < 1) age = 1;
+            if (age < 1) age = 1;
             return age.toString();
         } catch (Exception e) {
 
@@ -105,18 +106,18 @@ public class DateTimeUtil {
     public static String getBetweenTime(Long dateTime) {
         Date date = new Date();
         long time;
-        if(String.valueOf(dateTime).length() == 10) {
+        if (String.valueOf(dateTime).length() == 10) {
             String temp = String.valueOf(dateTime) + "000";
             dateTime = dateTime * 1000;
-            time = (date.getTime() - Long.parseLong(temp))/(1000*3600*24);
+            time = (date.getTime() - Long.parseLong(temp)) / (1000 * 3600 * 24);
         } else {
-            time = (date.getTime() - dateTime)/(1000*3600*24);
+            time = (date.getTime() - dateTime) / (1000 * 3600 * 24);
         }
         if (time > 0) {
-            if(time < 7) {
+            if (time < 7) {
                 return (String.valueOf(time) + "天前");
             } else {
-                if(date.getYear() == new Date(dateTime).getYear()) {
+                if (date.getYear() == new Date(dateTime).getYear()) {
                     SimpleDateFormat sdf = new SimpleDateFormat("M-dd");
                     return sdf.format(new Date(dateTime));
                 }
@@ -124,11 +125,11 @@ public class DateTimeUtil {
                 return sdf.format(new Date(dateTime));
             }
         } else {
-            time = (date.getTime() - dateTime)/(1000*3600);
-            if(time > 0) {
+            time = (date.getTime() - dateTime) / (1000 * 3600);
+            if (time > 0) {
                 return (String.valueOf(time) + "小时前");
             } else {
-                time = (date.getTime() - dateTime)/(1000*60);
+                time = (date.getTime() - dateTime) / (1000 * 60);
                 return (String.valueOf(time) + "分钟前");
             }
         }
@@ -163,13 +164,13 @@ public class DateTimeUtil {
         Date date = new Date();
         Date commentDate = new Date(commentTime);
         try {
-            if(date.getYear() == commentDate.getYear()) {
+            if (date.getYear() == commentDate.getYear()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm");
                 return sdf.format(commentDate);
             }
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             return sdf.format(commentDate);
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
         return null;
@@ -181,7 +182,7 @@ public class DateTimeUtil {
             Date date = new Date(commentTime);
 
             return sdf.format(date);
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
         return null;
@@ -190,13 +191,13 @@ public class DateTimeUtil {
     public static String getSnapUpTime(Long commentTime) {
         try {
             long days = commentTime / (1000 * 60 * 60 * 24);
-            long hours = (commentTime-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-            long minutes = (commentTime-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-            long seconds = (commentTime-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60) - minutes * (1000 * 60)) / 1000;
+            long hours = (commentTime - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+            long minutes = (commentTime - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
+            long seconds = (commentTime - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60) - minutes * (1000 * 60)) / 1000;
 
-            if(days > 0) {
+            if (days > 0) {
                 return String.format("大于%s天", days);
-            } else if(hours > 0) {
+            } else if (hours > 0) {
                 return String.format("大于%s小时", hours);
             } else if (minutes > 0) {
                 return String.format("剩余%s分", minutes);
@@ -210,19 +211,19 @@ public class DateTimeUtil {
     }
 
     public static boolean checkAdvertTime(long advertTime, long currentTime) {
-        if(advertTime == 0) {
+        if (advertTime == 0) {
             return true;
         }
         Calendar advertCal = Calendar.getInstance();
         advertCal.setTimeInMillis(advertTime);
         Calendar currentCal = Calendar.getInstance();
         currentCal.setTimeInMillis(currentTime);
-        if(advertCal.get(Calendar.YEAR) != currentCal.get(Calendar.YEAR)
+        if (advertCal.get(Calendar.YEAR) != currentCal.get(Calendar.YEAR)
                 || advertCal.get(Calendar.MONTH) != currentCal.get(Calendar.MONTH)
                 || advertCal.get(Calendar.DAY_OF_MONTH) != currentCal.get(Calendar.DAY_OF_MONTH)) {
             return true;
-        } else if ((advertCal.get(Calendar.HOUR_OF_DAY) >=0 && advertCal.get(Calendar.HOUR_OF_DAY) < 12)
-                && (currentCal.get(Calendar.HOUR_OF_DAY) >=12 && currentCal.get(Calendar.HOUR_OF_DAY) <= 23)){
+        } else if ((advertCal.get(Calendar.HOUR_OF_DAY) >= 0 && advertCal.get(Calendar.HOUR_OF_DAY) < 12)
+                && (currentCal.get(Calendar.HOUR_OF_DAY) >= 12 && currentCal.get(Calendar.HOUR_OF_DAY) <= 23)) {
             return true;
         }
         return false;
@@ -231,13 +232,13 @@ public class DateTimeUtil {
     public static String getCountDownTime(Long commentTime) {
         try {
             long days = commentTime / (1000 * 60 * 60 * 24);
-            long hours = (commentTime-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-            long minutes = (commentTime-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-            long seconds = (commentTime-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60) - minutes * (1000 * 60)) / 1000;
+            long hours = (commentTime - days * (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+            long minutes = (commentTime - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60)) / (1000 * 60);
+            long seconds = (commentTime - days * (1000 * 60 * 60 * 24) - hours * (1000 * 60 * 60) - minutes * (1000 * 60)) / 1000;
 
-            if(days > 0) {
+            if (days > 0) {
                 return String.format("大于%s天", days);
-            } else if(hours > 0) {
+            } else if (hours > 0) {
                 return String.format("大于%s小时", hours);
             } else if (minutes > 0) {
                 return String.format("%s分%s秒", minutes, seconds);
@@ -269,8 +270,25 @@ public class DateTimeUtil {
         if (h > 0) {
             str = (h < 10 ? ("0" + h) : h) + "h";
         }
-        str += (m < 10 ? ("0" + m) : m) + "m";
-        str += (s < 10 ? ("0" + s) : s)+"s";
+        if (m > 0) {
+            str += (m < 10 ? ("0" + m) : m) + "m";
+        }
+        str += (s < 10 ? ("0" + s) : s) + "s";
+        return str;
+    }
+
+    public static String second2Minute(Long second) {
+        if (second == null || second < 0) {
+            return "0s";
+        }
+
+        long m = second / 60;
+        long s = second % 60;
+        String str = "";
+        if (m > 0) {
+            str += (m < 10 ? ("0" + m) : m) + "m";
+        }
+        str += (s < 10 ? ("0" + s) : s) + "s";
         return str;
     }
 }
