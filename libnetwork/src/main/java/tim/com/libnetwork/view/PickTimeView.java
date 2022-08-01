@@ -4,14 +4,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
+//import com.bigkoo.pickerview.view.TimePickerView;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import tim.com.libnetwork.R;
+import tim.com.libnetwork.view.pickerview.builder.TimePickerBuilder;
+import tim.com.libnetwork.view.pickerview.listener.OnTimeSelectListener;
+import tim.com.libnetwork.view.pickerview.view.TimePickerView;
 
 /**
  * $底部弹出仿ios时间选择器

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../.gradle/caches/transforms-2/files-2.1/1916f97d8822bc6063b4a1f6ecbf755e/jetified-Android-PickerView-4.1.4/res/layout/layout_basepickerview.xml" value="0.18" />
+        <entry key="libnetwork/src/main/res/layout/include_pickerview_topbar.xml" value="0.13333333333333333" />
+        <entry key="libnetwork/src/main/res/layout/layout_basepickerview.xml" value="0.203125" />
+        <entry key="libnetwork/src/main/res/layout/pickerview_options.xml" value="0.203125" />
+        <entry key="libnetwork/src/main/res/layout/pickerview_time.xml" value="0.20323084940072955" />
+        <entry key="libnetwork/src/main/res/layout/view_title.xml" value="0.25104166666666666" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
