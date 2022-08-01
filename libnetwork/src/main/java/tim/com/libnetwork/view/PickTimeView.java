@@ -37,6 +37,11 @@ import tim.com.libnetwork.R;
 public class PickTimeView {
     Context context;
     String title;
+    String cancelMessage="取消";
+    String submitMessage="确认";
+    String cancelColor="#ff7b7b7b";
+    String submitColor="#ff7b7b7b";
+    boolean isDialog=false;
     boolean[] type=new boolean[]{true, true, true, false, false, false}; //分别控制“年”“月”“日”“时”“分”“秒”的显示或隐藏。
     Calendar startDate = Calendar.getInstance();
     Calendar endDate = Calendar.getInstance();
@@ -53,15 +58,56 @@ public class PickTimeView {
             }
         }).setType(type)
                 .setTitleText(title)
-                .setCancelText("取消")//取消按钮文字
-                .setSubmitText("确认")//确认按钮文字
+                .setCancelText(cancelMessage)//取消按钮文字
+                .setSubmitText(submitMessage)//确认按钮文字
                 .setSubCalSize(16)
                 .setTitleColor(Color.parseColor("#ff000000"))
-                .setSubmitColor(Color.parseColor("#ff333333"))//确定按钮文字颜色
-                .setCancelColor(Color.parseColor("#ff333333"))//取消按钮文字颜色
+                .setSubmitColor(Color.parseColor(submitColor))//确定按钮文字颜色
+                .setCancelColor(Color.parseColor(cancelColor))//取消按钮文字颜色
                 .setRangDate(startDate, endDate)//起始终止年月日设定
+                .isDialog(isDialog)
                 .build();
         pvTime.show();
+    }
+
+    public String getCancelMessage() {
+        return cancelMessage;
+    }
+
+    public void setCancelMessage(String cancelMessage) {
+        this.cancelMessage = cancelMessage;
+    }
+
+    public String getSubmitMessage() {
+        return submitMessage;
+    }
+
+    public void setSubmitMessage(String submitMessage) {
+        this.submitMessage = submitMessage;
+    }
+
+    public String getCancelColor() {
+        return cancelColor;
+    }
+
+    public void setCancelColor(String cancelColor) {
+        this.cancelColor = cancelColor;
+    }
+
+    public String getSubmitColor() {
+        return submitColor;
+    }
+
+    public void setSubmitColor(String submitColor) {
+        this.submitColor = submitColor;
+    }
+
+    public boolean isDialog() {
+        return isDialog;
+    }
+
+    public void setDialog(boolean dialog) {
+        isDialog = dialog;
     }
 
     public void setTitle(String title) {
