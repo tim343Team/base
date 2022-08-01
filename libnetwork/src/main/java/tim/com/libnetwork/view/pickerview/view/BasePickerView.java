@@ -318,7 +318,7 @@ public class BasePickerView {
             Window dialogWindow = mDialog.getWindow();
             if (dialogWindow != null) {
                 dialogWindow.setWindowAnimations(R.style.picker_view_scale_anim);
-                dialogWindow.setGravity(Gravity.CENTER);//可以改成Bottom
+                dialogWindow.setGravity(Gravity.BOTTOM);//可以改成Bottom
             }
 
             mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
