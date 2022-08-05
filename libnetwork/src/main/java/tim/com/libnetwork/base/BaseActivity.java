@@ -1,7 +1,12 @@
 package tim.com.libnetwork.base;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +14,13 @@ import android.widget.PopupWindow;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import tim.com.libnetwork.R;
+import tim.com.libnetwork.utils.ConstantLanguages;
+import tim.com.libnetwork.utils.SharedPreferencesUtils;
 import tim.com.libnetwork.utils.sysinfo.QMUIStatusBarHelper;
 
 /**
@@ -63,7 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     private void initLanguage() {
-        //TODO updateConfiguration 已于25hou弃用，会导致Android 7.0后语言支持的bug
 //        Locale l = null;
 //        int code = 1;
 //        if (code == 1) {
@@ -78,6 +86,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        DisplayMetrics dm = resources.getDisplayMetrics();
 //        config.locale = l;
 //        resources.updateConfiguration(config, dm);
+        String language = SharedPreferencesUtils.getCurrentLanguages(this);
+        Locale locale = null;
+        if (language.equals(ConstantLanguages.ENGLISH)) {
+            locale = Locale.ENGLISH;
+        }else if(language.equals(ConstantLanguages.JAPAN)){
+            locale = Locale.JAPANESE;
+        } else {
+            locale = Locale.CHINESE;
+        }
+
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            conf.setLocale(locale);
+            LocaleList localeList = new LocaleList(locale);
+            LocaleList.setDefault(localeList);
+            conf.setLocales(localeList);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            conf.setLocale(locale);
+        } else {
+            conf.locale = locale; //设置语言
+        }
+        res.updateConfiguration(conf, dm);
+        ActivityManage.addActivity(this);
     }
 
     protected void  init() {

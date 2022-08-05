@@ -12,8 +12,10 @@ import com.google.gson.Gson;
  * @version 1.0 2020/2/20
  */
 public class SharedPreferencesUtils {
+    private static final String NAME = "tim_base_sp";
+    private static final String PARAM_LANGUAGE = "app_language_pref_key";
 
-//    public static void setParam(Context context, String key, Object object) {
+    //    public static void setParam(Context context, String key, Object object) {
 //        setParam(context, FileName.PHOTO_SYN, key, object);
 //    }
 //
@@ -45,4 +47,14 @@ public class SharedPreferencesUtils {
 //        }
 //        editor.apply();
 //    }
+//获取当前语言
+    public static String getCurrentLanguages(Context context) {
+        return context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
+                .getString(PARAM_LANGUAGE, ConstantLanguages.SIMPLIFIED_CHINESE);
+    }
+
+    public static void setCurrentLanguages(Context context, String key) {
+        context.getSharedPreferences(NAME, Context.MODE_PRIVATE).edit()
+                .putString(PARAM_LANGUAGE, key).apply();
+    }
 }
