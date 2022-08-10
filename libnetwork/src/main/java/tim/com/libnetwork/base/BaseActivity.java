@@ -96,6 +96,22 @@ public abstract class BaseActivity extends AppCompatActivity {
             locale = Locale.CHINESE;
         }
 
+        //方式一
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        Configuration conf = res.getConfiguration();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            conf.setLocale(locale);
+//            LocaleList localeList = new LocaleList(locale);
+//            LocaleList.setDefault(localeList);
+//            conf.setLocales(localeList);
+////            conf.locale = locale;
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            conf.setLocale(locale);
+//        } else {
+//            conf.locale = locale; //设置语言
+//        }
+        //方式二
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
