@@ -1,9 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tim.com.libnetwork">
 
-    <application
-        android:name=".app.MyApplication"
-        android:theme="@style/AppTheme">
+    <application>
 
         <provider
             android:name="androidx.core.content.FileProvider"
