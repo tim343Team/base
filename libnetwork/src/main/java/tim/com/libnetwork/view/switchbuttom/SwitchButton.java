@@ -23,6 +23,14 @@ import tim.com.libnetwork.R;
 
 /**
  * SwitchButton.
+ *                 <SwitchButton
+ *                     android:id="@+id/settings_right_toogle"
+ *                     android:layout_width="@dimen/dimen_57"
+ *                     android:layout_height="34dp"
+ *                     android:visibility="visible"
+ *                     android:clickable="false"
+ *                     app:sb_checked_color="@color/color_49E8C5"
+ *                     app:sb_show_indicator="false" />
  */
 public class SwitchButton extends View implements Checkable {
     private static final int DEFAULT_WIDTH = dp2pxInt(58);
