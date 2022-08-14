@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
+import tim.com.libnetwork.app.MyApplication;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
 import tim.com.libnetwork.network.okhttp.RequestCall;
+import tim.com.libnetwork.utils.SharedPreferencesUtils;
 
 /**
  * ${description}
@@ -35,8 +37,10 @@ public class PostJsonBuilder extends RequestBuilder {
         this.mime = mime;
         return this;
     }
+
     @Override
     public RequestCall build() {
+        addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         return new PostJsonRequest(url, params, headers, body, mime).build();
     }
 

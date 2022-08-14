@@ -76,7 +76,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        int code = 1;
 //        if (code == 1) {
 //            l = Locale.CHINESE;
-//            //new PostFormBuilder().addHeader("Accept-Language","zh-CN,zh");
+//            new PostFormBuilder().addHeader("Accept-Language","zh-CN,zh");
 //        } else if (code == 2) {
 //            l = Locale.ENGLISH;
 //            // new PostFormBuilder().addHeader("Accept-Language","en-us,en");

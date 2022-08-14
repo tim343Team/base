@@ -24,21 +24,18 @@ import tim.com.libnetwork.utils.WonderfulStringUtils;
 
 /**
  * 网络请求封装
- *
+ * <p>
  * eg:WonderfulOkhttpUtils.post().url("url").addHeader("x-auth-token", token)
- *                 .addParams("symbol", symbol).build().execute(new StringCallback(){
- *             @Override
- *             public void onError(Request request, Exception e) {
- *                 super.onError(request, e);
- *             }
- *
- *             @Override
- *             public void onResponse(String response) {
- *             }
- *         })
+ * .addParams("symbol", symbol).build().execute(new StringCallback(){
  *
  * @author weiqiliu
  * @version 1.0 2020/4/13
+ * @Override public void onError(Request request, Exception e) {
+ * super.onError(request, e);
+ * }
+ * @Override public void onResponse(String response) {
+ * }
+ * })
  */
 public class WonderfulOkhttpUtils {
     private static WonderfulOkhttpUtils mInstance;
@@ -96,7 +93,7 @@ public class WonderfulOkhttpUtils {
 
     public void execute(RequestCall requestCall, Callback callback) {
         if (callback == null) {
-            Log.e("callback is null","!!!!");
+            Log.e("callback is null", "!!!!");
             callback = Callback.CALLBACK_DEFAULT;
         }
         WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());

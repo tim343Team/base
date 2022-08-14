@@ -9,9 +9,9 @@ public class ConstantLanguages {
     //自动
     public static final String AUTO = "auto";
     // 英文
-    public static final String ENGLISH = "en";
+    public static final String ENGLISH = "english";
     // 简体中文
-    public static final String SIMPLIFIED_CHINESE = "zh";
+    public static final String SIMPLIFIED_CHINESE = "cn";
     // 韩文
     public static final String KOREA = "ko";
     // 俄语

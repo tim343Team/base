@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
+import tim.com.libnetwork.app.MyApplication;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
 import tim.com.libnetwork.network.okhttp.RequestCall;
+import tim.com.libnetwork.utils.SharedPreferencesUtils;
 
 /**
  * ${description}
@@ -30,7 +32,7 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public RequestCall build() {
         //如需要可以在这里添加默认的请求头
-        addHeader("Accept-Language", "zh-CN,zh");
+        addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         PostFormRequest postFormRequest = new PostFormRequest(url, params, headers, files);
         RequestCall call = postFormRequest.build();
         return call;

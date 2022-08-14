@@ -1,6 +1,7 @@
 package tim.com.libnetwork.app;
 
 import android.app.Application;
+import android.content.Context;
 
 /**
  * ${description}
@@ -9,5 +10,11 @@ import android.app.Application;
  * @version 1.0 2020/4/13
  */
 public class MyApplication extends Application {
+    public static Context context;
 
+    @Override
+    public void onCreate(){
+        super.onCreate();
+        context=getApplicationContext();
+    }
 }
