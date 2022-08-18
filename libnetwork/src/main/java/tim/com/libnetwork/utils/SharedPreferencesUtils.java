@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 public class SharedPreferencesUtils {
     private static final String NAME = "tim_base_sp";
     private static final String PARAM_LANGUAGE = "app_language_pref_key";
+    private static final String TOKEN = "token";
 
     //    public static void setParam(Context context, String key, Object object) {
 //        setParam(context, FileName.PHOTO_SYN, key, object);
@@ -56,5 +57,16 @@ public class SharedPreferencesUtils {
     public static void setCurrentLanguages(Context context, String key) {
         context.getSharedPreferences(NAME, Context.MODE_PRIVATE).edit()
                 .putString(PARAM_LANGUAGE, key).apply();
+    }
+
+    //获取当前token
+    public static String getCurrentToken(Context context) {
+        return context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
+                .getString(TOKEN, ConstantLanguages.SIMPLIFIED_CHINESE);
+    }
+
+    public static void setCurrentToken(Context context, String token) {
+        context.getSharedPreferences(NAME, Context.MODE_PRIVATE).edit()
+                .putString(TOKEN, token).apply();
     }
 }

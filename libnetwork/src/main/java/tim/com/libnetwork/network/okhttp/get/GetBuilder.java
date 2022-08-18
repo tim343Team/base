@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import tim.com.libnetwork.app.MyApplication;
+import tim.com.libnetwork.network.okhttp.RemoteConfig;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
 import tim.com.libnetwork.network.okhttp.RequestCall;
 import tim.com.libnetwork.utils.SharedPreferencesUtils;
@@ -24,6 +25,10 @@ public class GetBuilder extends RequestBuilder {
 
     @Override
     public RequestCall build() {
+        Map<String,String> map=RemoteConfig.getHeader();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            addHeader(entry.getKey(), entry.getValue());
+        }
         addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         return new GetRequest(url, params, headers).build();
     }

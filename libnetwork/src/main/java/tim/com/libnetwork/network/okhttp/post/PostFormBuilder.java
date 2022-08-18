@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import tim.com.libnetwork.app.MyApplication;
+import tim.com.libnetwork.network.okhttp.RemoteConfig;
 import tim.com.libnetwork.network.okhttp.RequestBuilder;
 import tim.com.libnetwork.network.okhttp.RequestCall;
 import tim.com.libnetwork.utils.SharedPreferencesUtils;
@@ -32,6 +34,10 @@ public class PostFormBuilder extends RequestBuilder {
     @Override
     public RequestCall build() {
         //如需要可以在这里添加默认的请求头
+        Map<String,String> map= RemoteConfig.getHeader();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            addHeader(entry.getKey(), entry.getValue());
+        }
         addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         PostFormRequest postFormRequest = new PostFormRequest(url, params, headers, files);
         RequestCall call = postFormRequest.build();
