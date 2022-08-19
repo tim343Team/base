@@ -62,7 +62,7 @@ public class SharedPreferencesUtils {
     //获取当前token
     public static String getCurrentToken(Context context) {
         return context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
-                .getString(TOKEN, ConstantLanguages.SIMPLIFIED_CHINESE);
+                .getString(TOKEN, ConstantLanguages.JAPAN);
     }
 
     public static void setCurrentToken(Context context, String token) {
