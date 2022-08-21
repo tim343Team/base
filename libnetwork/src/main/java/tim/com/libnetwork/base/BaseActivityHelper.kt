@@ -2,6 +2,7 @@ package tim.com.libnetwork.base
 
 import android.graphics.Color
 import android.view.View
+import tim.com.libnetwork.utils.SystemUI
 
 class BaseActivityHelper(val activity: HBaseActivity) {
 
