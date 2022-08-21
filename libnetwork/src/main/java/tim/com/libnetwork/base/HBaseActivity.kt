@@ -3,7 +3,7 @@ package tim.com.libnetwork.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-open class HBaseActivity : AppCompatActivity() {
+abstract class HBaseActivity : AppCompatActivity() {
     companion object {
         //不设置
         const val STATUSBAR_NONE_STYLE = 0X0000
