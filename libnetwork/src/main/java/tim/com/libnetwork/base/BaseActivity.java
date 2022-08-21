@@ -29,7 +29,7 @@ import tim.com.libnetwork.utils.sysinfo.QMUIStatusBarHelper;
  * @author weiqiliu
  * @version 1.0 2020/4/20
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends HBaseActivity {
     private PopupWindow loadingPopup;
     private Unbinder unbinder;
 
@@ -37,10 +37,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         befSuperonCreate();
         super.onCreate(savedInstanceState);
-        QMUIStatusBarHelper.setStatusBarLightMode(this);
+//        QMUIStatusBarHelper.setStatusBarLightMode(this);
         setFlag();
         initLanguage();
-        setContentView(getActivityLayoutId());
+        View rootView = null;
+        int activityLayoutId = getActivityLayoutId();
+        if (activityLayoutId != 0) {
+            rootView = getLayoutInflater().inflate(activityLayoutId, null);
+        }
+        if (rootView == null) {
+            rootView = getActivityLayoutView();
+        }
+        setContentView(rootView);
         unbinder = ButterKnife.bind(this);
         init();
         initLoadingPopup();
@@ -90,7 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         Locale locale = null;
         if (language.equals(ConstantLanguages.ENGLISH)) {
             locale = Locale.ENGLISH;
-        }else if(language.equals(ConstantLanguages.JAPAN)){
+        } else if (language.equals(ConstantLanguages.JAPAN)) {
             locale = Locale.JAPANESE;
         } else {
             locale = Locale.CHINESE;
@@ -129,7 +137,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityManage.addActivity(this);
     }
 
-    protected void  init() {
+    protected void init() {
 
     }
 
@@ -137,6 +145,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 获取布局ID
      */
     protected abstract int getActivityLayoutId();
+
+    /**
+     * 获取布局View
+     */
+    protected abstract View getActivityLayoutView();
 
     /**
      * 初始化工作
@@ -177,7 +190,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void displayLoadingPopup() {
         try {
             loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
