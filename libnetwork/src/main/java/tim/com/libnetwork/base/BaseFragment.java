@@ -34,7 +34,6 @@ public abstract class BaseFragment extends Fragment {
         if (rootView == null) {
             rootView = getLayoutView();
         }
-        rootView = inflater.inflate(getLayoutId(), null);
         return rootView;
     }
 
