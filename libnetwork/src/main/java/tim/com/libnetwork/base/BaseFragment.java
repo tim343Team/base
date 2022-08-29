@@ -26,6 +26,14 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = null;
+        int activityLayoutId = getLayoutId();
+        if (activityLayoutId != 0) {
+            rootView = inflater.inflate(getLayoutId(), null);
+        }
+        if (rootView == null) {
+            rootView = getLayoutView();
+        }
         rootView = inflater.inflate(getLayoutId(), null);
         return rootView;
     }
@@ -83,6 +91,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract View getLayoutView();
 
     protected abstract void init();
 
