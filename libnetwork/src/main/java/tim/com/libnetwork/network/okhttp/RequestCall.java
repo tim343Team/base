@@ -1,7 +1,10 @@
 package tim.com.libnetwork.network.okhttp;
 
 import okhttp3.Call;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import tim.com.libnetwork.network.okhttp.call.JHCall;
+import tim.com.libnetwork.network.okhttp.call.JHCallFactory;
 
 /**
  * ${description}
@@ -11,36 +14,32 @@ import okhttp3.Request;
  */
 public class RequestCall {
     private OkHttpRequest okHttpRequest;
-    private Request request; //通过配置请求的 地址、http方法、请求头 等信息
-    private Call call;
+    private OkHttpClient client = WonderfulOkhttpUtils.getInstance().getOkHttpClient();
 
     public RequestCall(OkHttpRequest okHttpRequest) {
         this.okHttpRequest = okHttpRequest;
     }
 
     public void execute(Callback callback) {
-        generateCall(callback);
         if (callback != null) {
-            callback.onBefore(request);
+            callback.onBefore();
         }
         WonderfulOkhttpUtils.getInstance().execute(this, callback);
     }
 
-    private Call generateCall(Callback callback) {
-        request = generateRequest(callback);
-        call = WonderfulOkhttpUtils.getInstance().getOkHttpClient().newCall(request);
-        return call;
-    }
 
     private Request generateRequest(Callback callback) {
         return okHttpRequest.generateRequest(callback);
     }
 
-    public Call getCall() {
-        if(call == null){
-            return WonderfulOkhttpUtils.getInstance().getOkHttpClient().newCall(generateRequest(null));
-        } else {
-            return call;
-        }
+    public RequestCall newClient(OkHttpClient client){
+        this.client = client;
+        return this;
+    }
+
+    public JHCall getCall() {
+        JHCallFactory jhCallFactory = WonderfulOkhttpUtils.getInstance().getJhCallFactory();
+        Call realCall = client.newCall(generateRequest(null));
+        return jhCallFactory.factory(realCall);
     }
 }

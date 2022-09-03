@@ -18,7 +18,7 @@ public abstract class Callback<T>  {
 
     public abstract T parseNetworkResponse(Response response) throws IOException;
 
-    public void onBefore(Request request) {
+    public void onBefore() {
     }
 
 

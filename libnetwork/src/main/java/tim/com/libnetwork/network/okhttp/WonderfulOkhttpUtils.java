@@ -16,6 +16,8 @@ import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import tim.com.libnetwork.network.okhttp.call.JHCall;
+import tim.com.libnetwork.network.okhttp.call.JHCallFactory;
 import tim.com.libnetwork.network.okhttp.get.GetBuilder;
 import tim.com.libnetwork.network.okhttp.post.PostFormBuilder;
 import tim.com.libnetwork.network.okhttp.post.PostJsonBuilder;
@@ -40,26 +42,20 @@ import tim.com.libnetwork.utils.WonderfulStringUtils;
 public class WonderfulOkhttpUtils {
     private static WonderfulOkhttpUtils mInstance;
     private OkHttpClient mOkHttpClient;
+    private JHCallFactory jhCallFactory;
     private Handler handler;
-    private String tokenName = "x-auth-token";
-    private String token;
 
     public WonderfulOkhttpUtils() {
-        mOkHttpClient = new OkHttpClient.Builder().connectTimeout(50, TimeUnit.SECONDS).readTimeout(50, TimeUnit.SECONDS).cookieJar(new CookieJar() {
-            private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
-
-            @Override
-            public void saveFromResponse(HttpUrl httpUrl, List<Cookie> list) {
-                cookieStore.put(httpUrl.host(), list);
-            }
-
-            @Override
-            public List<Cookie> loadForRequest(HttpUrl httpUrl) {
-                List<Cookie> cookies = cookieStore.get(httpUrl.host());
-                return cookies != null ? cookies : new ArrayList<Cookie>();
-            }
-        }).build();
         handler = new Handler(Looper.getMainLooper());
+    }
+
+    public JHCallFactory getJhCallFactory() {
+        return jhCallFactory;
+    }
+
+    public void config(OkHttpClient okHttpClient, JHCallFactory factory){
+        this.mOkHttpClient = okHttpClient;
+        this.jhCallFactory = factory;
     }
 
     public static WonderfulOkhttpUtils getInstance() {
@@ -89,18 +85,15 @@ public class WonderfulOkhttpUtils {
         return mOkHttpClient;
     }
 
-    private String name;
-
     public void execute(RequestCall requestCall, Callback callback) {
         if (callback == null) {
             Log.e("callback is null", "!!!!");
             callback = Callback.CALLBACK_DEFAULT;
         }
-        WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());
-        WonderfulLogUtils.logi("请求头", requestCall.getCall().request().headers().toString());
-        name = requestCall.getCall().request().url().toString();
+        JHCall call = requestCall.getCall();
+        String  name = call.request().url().toString();
         final Callback finalCallback = callback;
-        requestCall.getCall().enqueue(new okhttp3.Callback() {
+        call.enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 sendFailResultCallback(call.request(), e, finalCallback);
@@ -120,12 +113,6 @@ public class WonderfulOkhttpUtils {
                     return;
                 }
                 try {
-//                    token = response.header(tokenName);
-//                    if (!WonderfulStringUtils.isEmpty(token)) {
-//                        //TODO 保存token
-//                        MyApplication.getApp().getCurrentUser().setToken(token);
-//                        MyApplication.getApp().saveCurrentUser();
-//                    }
                     Object o = finalCallback.parseNetworkResponse(response);
                     sendSuccessResultCallback(o, finalCallback);
                 } catch (IOException e) {
@@ -159,13 +146,5 @@ public class WonderfulOkhttpUtils {
 
     public Handler getHandler() {
         return handler;
-    }
-
-    public String getTokenName() {
-        return tokenName;
-    }
-
-    public String getToken() {
-        return token;
     }
 }
