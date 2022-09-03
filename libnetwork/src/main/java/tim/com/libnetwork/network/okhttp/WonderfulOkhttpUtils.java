@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import tim.com.libnetwork.network.okhttp.call.JHCall;
 import tim.com.libnetwork.network.okhttp.call.JHCallFactory;
+import tim.com.libnetwork.network.okhttp.call.RealCallFactory;
 import tim.com.libnetwork.network.okhttp.get.GetBuilder;
 import tim.com.libnetwork.network.okhttp.post.PostFormBuilder;
 import tim.com.libnetwork.network.okhttp.post.PostJsonBuilder;
@@ -53,7 +56,32 @@ public class WonderfulOkhttpUtils {
         return jhCallFactory;
     }
 
-    public void config(OkHttpClient okHttpClient, JHCallFactory factory){
+    //初始化默认的OkHttpClient和JHCallFactory，建议在项目里的application里初始化
+    public void deafultConfig() {
+        this.mOkHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(50, TimeUnit.SECONDS).readTimeout(50, TimeUnit.SECONDS)
+                .cookieJar(new CookieJar() {
+                    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
+
+                    @Override
+                    public void saveFromResponse(@NonNull HttpUrl httpUrl, @NonNull List<Cookie> list) {
+                        cookieStore.put(httpUrl.host(), list);
+                    }
+
+                    @NonNull
+                    @Override
+                    public List<Cookie> loadForRequest(@NonNull HttpUrl httpUrl) {
+                        List<Cookie> cookies = cookieStore.get(httpUrl.host());
+                        return cookies != null ? cookies : new ArrayList<>();
+                    }
+                })
+                .build();
+        this.jhCallFactory = new RealCallFactory();
+
+    }
+
+    //初始化自定义的OkHttpClient和JHCallFactory，建议在项目里的application里初始化
+    public void config(OkHttpClient okHttpClient, JHCallFactory factory) {
         this.mOkHttpClient = okHttpClient;
         this.jhCallFactory = factory;
     }
@@ -91,7 +119,7 @@ public class WonderfulOkhttpUtils {
             callback = Callback.CALLBACK_DEFAULT;
         }
         JHCall call = requestCall.getCall();
-        String  name = call.request().url().toString();
+        String name = call.request().url().toString();
         final Callback finalCallback = callback;
         call.enqueue(new okhttp3.Callback() {
             @Override
