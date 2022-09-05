@@ -32,11 +32,13 @@ public class GetBuilder extends RequestBuilder {
         addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         //把params里的参数拼接到url里
         Uri.Builder builder = Uri.parse(url).buildUpon();
-        Set<String> keys = params.keySet();
-        Iterator<String> iterator = keys.iterator();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            builder.appendQueryParameter(key, (params.get(key)));
+        if (params != null) {
+            Set<String> keys = params.keySet();
+            Iterator<String> iterator = keys.iterator();
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                builder.appendQueryParameter(key, (params.get(key)));
+            }
         }
         return new GetRequest(builder.build().toString(), params, headers).build();
     }
