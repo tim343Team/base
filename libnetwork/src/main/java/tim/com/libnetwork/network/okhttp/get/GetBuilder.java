@@ -31,20 +31,14 @@ public class GetBuilder extends RequestBuilder {
         }
         addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
         //把params里的参数拼接到url里
-        boolean isFirstParams = true;
-        StringBuilder urlBuilder = new StringBuilder(url);
+        Uri.Builder builder = Uri.parse(url).buildUpon();
         Set<String> keys = params.keySet();
         Iterator<String> iterator = keys.iterator();
         while (iterator.hasNext()) {
             String key = iterator.next();
-            if (isFirstParams) {
-                urlBuilder.append("?").append(key).append("=").append(params.get(key));
-                isFirstParams = false;
-            } else {
-                urlBuilder.append("&").append(key).append("=").append(params.get(key));
-            }
+            builder.appendQueryParameter(key, (params.get(key)));
         }
-        return new GetRequest(urlBuilder.toString(), params, headers).build();
+        return new GetRequest(builder.build().toString(), params, headers).build();
     }
 
     private String appendParams(String url, Map<String, String> params) {
