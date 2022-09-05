@@ -25,24 +25,36 @@ public class GetBuilder extends RequestBuilder {
 
     @Override
     public RequestCall build() {
-        Map<String,String> map=RemoteConfig.getHeader();
+        Map<String, String> map = RemoteConfig.getHeader();
         for (Map.Entry<String, String> entry : map.entrySet()) {
             addHeader(entry.getKey(), entry.getValue());
         }
         addHeader("language", SharedPreferencesUtils.getCurrentLanguages(MyApplication.context));
-        return new GetRequest(url, params, headers).build();
+        //把params里的参数拼接到url里
+        boolean isFirstParams = true;
+        StringBuilder urlBuilder = new StringBuilder(url);
+        Set<String> keys = params.keySet();
+        Iterator<String> iterator = keys.iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            if (isFirstParams) {
+                urlBuilder.append("?").append(key).append("=").append(params.get(key));
+                isFirstParams = false;
+            } else {
+                urlBuilder.append("&").append(key).append("=").append(params.get(key));
+            }
+        }
+        return new GetRequest(urlBuilder.toString(), params, headers).build();
     }
 
     private String appendParams(String url, Map<String, String> params) {
-        if (url == null || params == null || params.isEmpty())
-        {
+        if (url == null || params == null || params.isEmpty()) {
             return url;
         }
         Uri.Builder builder = Uri.parse(url).buildUpon();
         Set<String> keys = params.keySet();
         Iterator<String> iterator = keys.iterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             String key = iterator.next();
             builder.appendQueryParameter(key, params.get(key));
         }

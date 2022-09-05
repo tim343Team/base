@@ -49,4 +49,12 @@
         <attr name="sb_background" format="reference|color" />
         <attr name="sb_enable_effect" format="reference|boolean" />
     </declare-styleable>
+
+    <declare-styleable name="SeekBarView">
+        <attr name="start_drawable" format="reference" />
+        <attr name="end_drawable" format="reference" />
+        <attr name="not_scroll_bg" format="reference" />
+        <attr name="has_scroll_bg" format="reference" />
+        <attr name="scroll_bg_height" format="dimension" />
+    </declare-styleable>
 </resources>
