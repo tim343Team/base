@@ -120,6 +120,8 @@ public class WonderfulOkhttpUtils {
         }
         JHCall call = requestCall.getCall();
         String name = call.request().url().toString();
+        WonderfulLogUtils.logi("URL", requestCall.getCall().request().url().toString());
+        WonderfulLogUtils.logi("请求头", requestCall.getCall().request().headers().toString());
         final Callback finalCallback = callback;
         call.enqueue(new okhttp3.Callback() {
             @Override
