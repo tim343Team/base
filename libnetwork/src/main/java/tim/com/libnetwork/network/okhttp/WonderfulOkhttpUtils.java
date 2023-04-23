@@ -30,7 +30,7 @@ import tim.com.libnetwork.utils.WonderfulStringUtils;
 /**
  * 网络请求封装
  * <p>
- * eg:WonderfulOkhttpUtils.post().url("url").addHeader("x-auth-token", token)
+ * 方式一：eg:WonderfulOkhttpUtils.post().url("url").addHeader("x-auth-token", token)
  * .addParams("symbol", symbol).build().execute(new StringCallback(){
  *
  * @author weiqiliu
@@ -41,6 +41,27 @@ import tim.com.libnetwork.utils.WonderfulStringUtils;
  * @Override public void onResponse(String response) {
  * }
  * })
+ *
+ * 方式二：eg:
+ *            WonderfulOkhttpUtils.postJson()
+ *                         .body(GsonUtils.toJson(RegisterNextPageHelp.register(list)))
+ *                         .addHeader("Content-Type","application/json")
+ *                         .url(UrlFactory.updateProfile())
+ *                         .build()
+ *                         .getCall()
+ *                         .bindLifecycle(this)
+ *                         .enqueue(new GsonWalkDogCallBack<RemoteData<UserInfoData>>() {
+ *                             @Override
+ *                             protected void onRes(RemoteData<UserInfoData> data) throws Exception {
+ *
+ *                             }
+ *
+ *                             @Override
+ *                             protected void onFail(Exception e) {
+ *                                 super.onFail(e);
+ *                                 ToastUtil.hideLoading();
+ *                             }
+ *                         });
  */
 public class WonderfulOkhttpUtils {
     private static WonderfulOkhttpUtils mInstance;
@@ -77,7 +98,6 @@ public class WonderfulOkhttpUtils {
                 })
                 .build();
         this.jhCallFactory = new RealCallFactory();
-
     }
 
     //初始化自定义的OkHttpClient和JHCallFactory，建议在项目里的application里初始化

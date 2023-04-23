@@ -22,6 +22,10 @@ abstract class HBaseActivity : AppCompatActivity() {
 
     }
 
+    public var statusStyle = STATUSBAR_WINDOW_COLOR_STYLE
+
+    public var statusTextStyle = STATUSBAR_DARK
+
     protected val mBaseActivityHelper = BaseActivityHelper(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +33,6 @@ abstract class HBaseActivity : AppCompatActivity() {
     }
 
     protected open fun statusBarStyle(): Int {
-        return STATUSBAR_WINDOW_COLOR_STYLE or STATUSBAR_DARK
+        return statusStyle or statusTextStyle
     }
-
-
 }

@@ -8,9 +8,9 @@ public class SystemUI {
         View decorView = window.getDecorView();
         int systemUi = decorView.getSystemUiVisibility();
         if (dark) {
-            systemUi |= 8192;
+            systemUi |= 8192;//当 SYSTEM_UI_FLAG_LIGHT_STATUS_BAR 标志被设置后，状态栏上的图标和文字颜色会变成黑色
         } else {
-            systemUi &= -8193;
+            systemUi &= -8193;//
         }
         decorView.setSystemUiVisibility(systemUi);
     }

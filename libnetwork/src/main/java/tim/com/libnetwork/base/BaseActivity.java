@@ -19,6 +19,7 @@ import java.util.Locale;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import tim.com.libnetwork.R;
+import tim.com.libnetwork.action.KeyboardAction;
 import tim.com.libnetwork.utils.ConstantLanguages;
 import tim.com.libnetwork.utils.SharedPreferencesUtils;
 import tim.com.libnetwork.utils.sysinfo.QMUIStatusBarHelper;
@@ -29,7 +30,7 @@ import tim.com.libnetwork.utils.sysinfo.QMUIStatusBarHelper;
  * @author weiqiliu
  * @version 1.0 2020/4/20
  */
-public abstract class BaseActivity extends HBaseActivity {
+public abstract class BaseActivity extends HBaseActivity implements KeyboardAction {
     private PopupWindow loadingPopup;
     private Unbinder unbinder;
 

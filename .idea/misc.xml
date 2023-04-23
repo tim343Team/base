@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../.gradle/caches/transforms-2/files-2.1/1916f97d8822bc6063b4a1f6ecbf755e/jetified-Android-PickerView-4.1.4/res/layout/layout_basepickerview.xml" value="0.18" />
+        <entry key="libnetwork/src/main/res/drawable/password_off_ic.xml" value="0.1725" />
+        <entry key="libnetwork/src/main/res/drawable/password_on_ic.xml" value="0.1725" />
         <entry key="libnetwork/src/main/res/drawable/rectangle_pickview.xml" value="0.15" />
         <entry key="libnetwork/src/main/res/drawable/seekview_null_thumb.xml" value="0.2145" />
         <entry key="libnetwork/src/main/res/layout/include_pickerview_topbar.xml" value="0.25" />
