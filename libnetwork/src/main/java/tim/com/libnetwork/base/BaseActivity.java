@@ -62,7 +62,7 @@ public abstract class BaseActivity extends HBaseActivity implements KeyboardActi
                 loadData();
             }
         });
-        
+
     }
 
     @Override
